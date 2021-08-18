@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import myshop.pageobjects_xpath.constants.Environment;
+import myshop.constants.Environment;
 import myshop.pageobjects_xpath.pages.HomePage;
 import myshop.pageobjects_xpath.pages.LoginPage;
 

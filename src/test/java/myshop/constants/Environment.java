@@ -1,4 +1,4 @@
-package myshop.pageobjects_xpath.constants;
+package myshop.constants;
 
 public enum Environment {
 	DEFAULT("https://sajithatharaka.github.io/myshop_ecommerce/");

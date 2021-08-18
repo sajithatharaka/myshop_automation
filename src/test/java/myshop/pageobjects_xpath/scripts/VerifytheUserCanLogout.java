@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,7 +14,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import myshop.pageobjects_xpath.constants.Environment;
+import myshop.constants.Environment;
 import myshop.pageobjects_xpath.pages.HomePage;
 import myshop.pageobjects_xpath.pages.LoginPage;
 
@@ -42,6 +43,11 @@ public class VerifytheUserCanLogout {
 		
 		assertEquals(home.loggedInUserName.getText(), "Hi John, Welcome back !", "Logeed in user message was not - Hi John, Welcome back !");
 		
+		home.logOut.click();
+		
+		boolean isLoginDisplayed=home.login.isDisplayed();
+		assertEquals(isLoginDisplayed, true,"Login link is not visible");
+
 		
 	}
 

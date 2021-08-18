@@ -7,6 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 	
+	@FindBy(xpath="//a[text()='Logout']")
+	public WebElement logOut;
+	
+	
 	@FindBy(xpath="//span[text()='See Details'][1]")
 	public WebElement seeDetailsFirstItem;	
 	
@@ -17,7 +21,7 @@ public class HomePage {
 	public WebElement logout;
 	
 	@FindBy(xpath="//a[text()='Login']")
-	private WebElement login;
+	public WebElement login;
 	
 	@FindBy(xpath="//a[text()='Sign Up']")
 	private WebElement signUp;

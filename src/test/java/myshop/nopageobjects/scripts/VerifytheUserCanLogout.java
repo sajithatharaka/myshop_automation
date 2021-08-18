@@ -1,23 +1,21 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.nopageobjects.scripts;
 
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.BuyProductPage;
-import myshop.pageobjects_xpath.pages.HomePage;
 
-public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
+public class VerifytheUserCanLogout {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -33,11 +31,12 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 
 	@Test
 	public void verifyLogin() throws InterruptedException {
-		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.seeDetailsFirstItem.click();
-		BuyProductPage productDetailsPage=home.goToBuyProductPagePage(driver);
-		productDetailsPage.quantity.sendKeys("10");	
-		assertEquals(productDetailsPage.quantity.getAttribute("value"), "10", "Quantity is not equal to 10");		
+		driver.findElement(By.xpath("//a[text()='Login']")).click();
+		driver.findElement(By.xpath("//label[text()='User Name']/following-sibling::input")).sendKeys("admin");
+		driver.findElement(By.xpath("//label[text()='Password']/following-sibling::input")).sendKeys("123");
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+	
+		assertEquals(driver.getTitle(), "Home", "Page title is not Home");
 	}
 
 	@AfterTest
@@ -45,4 +44,3 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		driver.quit();
 	}
 }
-
