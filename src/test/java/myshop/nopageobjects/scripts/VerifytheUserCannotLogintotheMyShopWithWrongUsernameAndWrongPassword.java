@@ -1,23 +1,24 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.nopageobjects.scripts;
 
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.HomePage;
-import myshop.pageobjects_xpath.pages.LoginPage;
 
-public class VerifytheUserNameIsShownAfterLogin {
+public class VerifytheUserCannotLogintotheMyShopWithWrongUsernameAndWrongPassword {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -33,15 +34,16 @@ public class VerifytheUserNameIsShownAfterLogin {
 
 	@Test
 	public void verifyLogin() throws InterruptedException {
-		HomePage home = PageFactory.initElements(driver, HomePage.class);
+		driver.findElement(By.xpath("//a[text()='Login']")).click();
+		driver.findElement(By.xpath("//label[text()='User Name']/following-sibling::input")).sendKeys("admin123");
+		driver.findElement(By.xpath("//label[text()='Password']/following-sibling::input")).sendKeys("1234");
+		driver.findElement(By.xpath("//input[@value='Login']")).click();		
+		
+		WebDriverWait wait = new WebDriverWait(driver, 2);
+	    wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
 
-		LoginPage login =home.goToLogin(driver);
-		login.userName.sendKeys("admin");
-		login.password.sendKeys("123");
-		login.login.click();
-		
-		assertEquals(home.loggedInUserName.getText(),"Hi John, Welcome back !", "Logeed in user message was not - Hi John, Welcome back !");
-		
+		assertEquals(alert.getText(), "Invalid username or password!", "Alert message was not - Invalid username or password!");
 	}
 
 	@AfterTest

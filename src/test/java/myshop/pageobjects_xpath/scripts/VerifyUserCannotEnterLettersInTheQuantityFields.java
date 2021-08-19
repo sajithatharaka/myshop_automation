@@ -37,7 +37,7 @@ public class VerifyUserCannotEnterLettersInTheQuantityFields {
 		home.seeDetailsFirstItem.click();
 		BuyProductPage productDetailsPage=home.goToBuyProductPagePage(driver);
 		productDetailsPage.quantity.sendKeys("abc");	
-		assertEquals(productDetailsPage.quantity.getAttribute("value"), "", "Quantity is not equal to empty");			
+		assertEquals(productDetailsPage.quantity.getAttribute("value"), "", "Quantity is not empty");			
 	}
 
 	@AfterTest

@@ -14,7 +14,7 @@ public class HomePage {
 	@FindBy(xpath="//span[text()='See Details'][1]")
 	public WebElement seeDetailsFirstItem;	
 	
-	@FindBy(xpath="//div[text()='Hi John, Welcome back !']")
+	@FindBy(xpath="//span[text()='Hi John, Welcome back !']")
 	public WebElement loggedInUserName;
 	
 	@FindBy(xpath="//a[text()='Logout']")
@@ -24,7 +24,7 @@ public class HomePage {
 	public WebElement login;
 	
 	@FindBy(xpath="//a[text()='Sign Up']")
-	private WebElement signUp;
+	public WebElement signUp;
 	
 	@FindBy(xpath="//span[text()='See Details']")
 	private WebElement seeDetails;
