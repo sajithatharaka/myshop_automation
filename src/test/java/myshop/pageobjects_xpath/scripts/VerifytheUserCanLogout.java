@@ -42,7 +42,7 @@ public class VerifytheUserCanLogout {
 		
 		assertEquals(home.loggedInUserName.getText(), "Hi John, Welcome back !", "Logeed in user message was not - Hi John, Welcome back !");
 		
-		home.logOut.click();
+		home.logout.click();
 		
 		boolean isLoginDisplayed=home.login.isDisplayed();
 		assertEquals(isLoginDisplayed, true,"Login link is not visible");

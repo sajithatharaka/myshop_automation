@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
+import myshop.pageobjects_xpath.pages.ProductDetailsPage;
 import myshop.pageobjects_xpath.pages.BuyProductPage;
 import myshop.pageobjects_xpath.pages.HomePage;
 import myshop.pageobjects_xpath.pages.ShippingDetailsPage;
@@ -38,11 +39,12 @@ public class VerifyaValidationMessageIsShownWhenTheHouseNumberIsEmpty {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.seeDetailsFirstItem.click();
-		BuyProductPage productDetailsPage=home.goToBuyProductPagePage(driver);
-		productDetailsPage.quantity.sendKeys("10");	
-		productDetailsPage.buy.click();
-		ShippingDetailsPage shippingDetails=productDetailsPage.goToShippingDetails(driver);
+		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
+		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
+		
+		buyProductPage.quantity.sendKeys("10");	
+		buyProductPage.buy.click();
+		ShippingDetailsPage shippingDetails=buyProductPage.goToShippingDetails(driver);
 		shippingDetails.houseNumber.sendKeys("");
 		shippingDetails.submit.click();
 

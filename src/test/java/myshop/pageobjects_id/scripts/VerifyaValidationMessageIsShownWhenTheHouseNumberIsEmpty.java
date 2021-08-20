@@ -1,24 +1,28 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.BuyProductPage;
-import myshop.pageobjects_xpath.pages.HomePage;
-import myshop.pageobjects_xpath.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.BuyProductPage;
+import myshop.pageobjects_id.pages.HomePage;
+import myshop.pageobjects_id.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.ShippingDetailsPage;
 
-public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
+public class VerifyaValidationMessageIsShownWhenTheHouseNumberIsEmpty {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -37,9 +41,18 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
 		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
-		
+	
 		buyProductPage.quantity.sendKeys("10");	
-		assertEquals(buyProductPage.quantity.getAttribute("value"), "10", "Quantity is not equal to 10");		
+		buyProductPage.buy.click();
+		ShippingDetailsPage shippingDetails=buyProductPage.goToShippingDetails(driver);
+		shippingDetails.houseNumber.sendKeys("");
+		shippingDetails.submit.click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 2);
+	    wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		assertEquals(alert.getText(), "Please enter a house number to proceed", "Alert message was not - Please enter a house number to proceed");
+
 	}
 
 	@AfterTest
@@ -47,4 +60,3 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		driver.quit();
 	}
 }
-

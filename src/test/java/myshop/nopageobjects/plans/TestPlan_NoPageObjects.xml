@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Practice Suite">
+ <test name="VerifytheUserCanLogintotheMyShop">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCanLogintotheMyShop"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotLogintotheMyShopWithWrongPassword">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotLogintotheMyShopWithWrongPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotLogintotheMyShopWithWrongUsername">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotLogintotheMyShopWithWrongUsername"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotLogintotheMyShopWithWrongUsernameAndWrongPassword">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotLogintotheMyShopWithWrongUsernameAndWrongPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCanSignuptotheMyShop">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCanSignuptotheMyShop"/>
+    </classes>     
+  </test>
+  
+ <test name="VerifytheUserCannotSignuptotheMyShopWhenReEnterPasswordIsDifferent">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotSignuptotheMyShopWhenReEnterPasswordIsDifferent"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotSignupWithoutEnteringPassword">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotSignupWithoutEnteringPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotSignupWithoutReEnteringPassword">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotSignupWithoutReEnteringPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotSignupWithoutPasswords">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCannotSignupWithoutPasswords"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCanViewProductDetails">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCanViewProductDetails"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserNameIsShownAfterLogin">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserNameIsShownAfterLogin"/>
+    </classes>     
+  </test>
+  
+  <test name="VerifytheUserCanLogout">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifytheUserCanLogout"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanClickBuyAndProceedtoBuyScreen">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyUserCanClickBuyAndProceedtoBuyScreen"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanSpecifytheQuantityInTheBuyScreen">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyUserCanSpecifytheQuantityInTheBuyScreen"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCannotEnterLettersInTheQuantityFields">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyUserCannotEnterLettersInTheQuantityFields"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanViewTheTotalAmountGoingtoSpend">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyUserCanViewTheTotalAmountGoingtoSpend"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanCheckoutAndEnterShippingDetails">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyUserCanCheckoutAndEnterShippingDetails"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyaValidationMessageIsShownWhenTheHouseNumberIsEmpty">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyaValidationMessageIsShownWhenTheHouseNumberIsEmpty"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyaValidationMessageIsShownWhenTheCountryIsEmpty">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyaValidationMessageIsShownWhenTheCountryIsEmpty"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyaValidationMessageIsShownWhenEnteredDigitsForTheCountry">    
+     <classes>
+       <class name="myshop.nopageobjects.scripts.VerifyaValidationMessageIsShownWhenEnteredDigitsForTheCountry"/>
+    </classes>     
+  </test>
+  
+  
+   <!-- Test -->
+</suite> <!-- Suite -->

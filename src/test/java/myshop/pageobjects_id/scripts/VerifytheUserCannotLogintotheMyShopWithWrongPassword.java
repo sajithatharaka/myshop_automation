@@ -1,14 +1,14 @@
-package myshop.nopageobjects.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -17,8 +17,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
+import myshop.pageobjects_id.pages.HomePage;
+import myshop.pageobjects_id.pages.LoginPage;
 
-public class VerifytheUserCannotSignupWithouReEnteringPassword {
+public class VerifytheUserCannotLogintotheMyShopWithWrongPassword {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -34,18 +36,18 @@ public class VerifytheUserCannotSignupWithouReEnteringPassword {
 
 	@Test
 	public void verifyLogin() throws InterruptedException {
-		driver.findElement(By.xpath("//a[text()='Sign Up']")).click();
-		
-		driver.findElement(By.xpath("//label[text()='User Name']/following-sibling::input")).sendKeys("Admin");
-		driver.findElement(By.xpath("//label[text()='Password']/following-sibling::input")).sendKeys("123");
-		driver.findElement(By.xpath("//label[text()='Re-Enter Password']/following-sibling::input")).sendKeys("");
-		driver.findElement(By.xpath("//input[@value='Register']")).click();		
+		HomePage home = PageFactory.initElements(driver, HomePage.class);
+
+		LoginPage login =home.goToLogin(driver);
+		login.userName.sendKeys("admin");
+		login.password.sendKeys("1234");
+		login.login.click();
 		
 		WebDriverWait wait = new WebDriverWait(driver, 2);
 	    wait.until(ExpectedConditions.alertIsPresent());
 		Alert alert = driver.switchTo().alert();
 
-		assertEquals(alert.getText(), "Please enter a passwords to proceed", "Alert message was not - Please enter a passwords to proceed");
+		assertEquals(alert.getText(), "Invalid username or password!", "Alert message was not - Invalid username or password!");
 	}
 
 	@AfterTest
@@ -53,4 +55,3 @@ public class VerifytheUserCannotSignupWithouReEnteringPassword {
 		driver.quit();
 	}
 }
-

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Practice Suite">
+ <test name="VerifytheUserCanLogintotheMyShop">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCanLogintotheMyShop"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotLogintotheMyShopWithWrongPassword">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotLogintotheMyShopWithWrongPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotLogintotheMyShopWithWrongUsername">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotLogintotheMyShopWithWrongUsername"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotLogintotheMyShopWithWrongUsernameAndWrongPassword">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotLogintotheMyShopWithWrongUsernameAndWrongPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCanSignuptotheMyShop">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCanSignuptotheMyShop"/>
+    </classes>     
+  </test>
+  
+ <test name="VerifytheUserCannotSignuptotheMyShopWhenReEnterPasswordIsDifferent">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotSignuptotheMyShopWhenReEnterPasswordIsDifferent"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotSignupWithoutEnteringPassword">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotSignupWithoutEnteringPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotSignupWithoutReEnteringPassword">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotSignupWithoutReEnteringPassword"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCannotSignupWithoutPasswords">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCannotSignupWithoutPasswords"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserCanViewProductDetails">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCanViewProductDetails"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifytheUserNameIsShownAfterLogin">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserNameIsShownAfterLogin"/>
+    </classes>     
+  </test>
+  
+  <test name="VerifytheUserCanLogout">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifytheUserCanLogout"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanClickBuyAndProceedtoBuyScreen">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyUserCanClickBuyAndProceedtoBuyScreen"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanSpecifytheQuantityInTheBuyScreen">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyUserCanSpecifytheQuantityInTheBuyScreen"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCannotEnterLettersInTheQuantityFields">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyUserCannotEnterLettersInTheQuantityFields"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanViewTheTotalAmountGoingtoSpend">    
+     <classes>
+       <class name="myshop.pageobjects_id.scripts.VerifyUserCanViewTheTotalAmountGoingtoSpend"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyUserCanCheckoutAndEnterShippingDetails">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyUserCanCheckoutAndEnterShippingDetails"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyaValidationMessageIsShownWhenTheHouseNumberIsEmpty">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyaValidationMessageIsShownWhenTheHouseNumberIsEmpty"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyaValidationMessageIsShownWhenTheCountryIsEmpty">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyaValidationMessageIsShownWhenTheCountryIsEmpty"/>
+    </classes>     
+  </test>
+  
+   <test name="VerifyaValidationMessageIsShownWhenEnteredDigitsForTheCountry">    
+     <classes>
+       <class name="myshop.pageobjects_xpath.scripts.VerifyaValidationMessageIsShownWhenEnteredDigitsForTheCountry"/>
+    </classes>     
+  </test>
+  
+  
+   <!-- Test -->
+</suite> <!-- Suite -->

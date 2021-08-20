@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
 import myshop.pageobjects_xpath.pages.HomePage;
+import myshop.pageobjects_xpath.pages.ProductDetailsPage;
 
 public class VerifytheUserCanViewProductDetails {
 	private WebDriver driver;
@@ -33,7 +34,7 @@ public class VerifytheUserCanViewProductDetails {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.goToProductDetailsPage(driver);
+		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
 		
 		assertEquals(driver.getTitle(), "Product Details", "Page title is not Product Details");}
 

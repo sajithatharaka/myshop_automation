@@ -1,4 +1,4 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
@@ -14,11 +14,9 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.BuyProductPage;
-import myshop.pageobjects_xpath.pages.HomePage;
-import myshop.pageobjects_xpath.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.HomePage;
 
-public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
+public class VerifyUserCanClickBuyAndProceedtoBuyScreen {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -35,11 +33,10 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
-		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
-		
-		buyProductPage.quantity.sendKeys("10");	
-		assertEquals(buyProductPage.quantity.getAttribute("value"), "10", "Quantity is not equal to 10");		
+		home.seeDetailsFirstItem.click();
+		home.goToFirstProductDetailsPage(driver);
+			
+		assertEquals(driver.getTitle(), "Buy Product", "Page title is not Buy Product");		
 	}
 
 	@AfterTest
@@ -47,4 +44,3 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		driver.quit();
 	}
 }
-

@@ -1,4 +1,4 @@
-package myshop.pageobjects_xpath.pages;
+package myshop.pageobjects_id.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,23 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 	
-	@FindBy(xpath="//span[text()='See Details'][1]")
+		
+	@FindBy(id="product-1")
 	public WebElement seeDetailsFirstItem;	
 	
-	@FindBy(xpath="//span[text()='Hi John, Welcome back !']")
+	@FindBy(id="logeed-user")
 	public WebElement loggedInUserName;
 	
-	@FindBy(xpath="//a[text()='Logout']")
+	@FindBy(id="logout")
 	public WebElement logout;
 	
-	@FindBy(xpath="//a[text()='Login']")
+	@FindBy(id="login")
 	public WebElement login;
 	
-	@FindBy(xpath="//a[text()='Sign Up']")
-	public WebElement signUp;	
-
-	@FindBy(xpath="//span[text()='Buy']")
-	private WebElement buy;
+	@FindBy(id="signup")
+	public WebElement signUp;
 	
 	
 	public SignupPage goToSignUp(WebDriver driver) {

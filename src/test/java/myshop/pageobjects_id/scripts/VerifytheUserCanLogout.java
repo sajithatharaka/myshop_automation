@@ -1,4 +1,4 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
@@ -14,11 +14,10 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.BuyProductPage;
-import myshop.pageobjects_xpath.pages.HomePage;
-import myshop.pageobjects_xpath.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.HomePage;
+import myshop.pageobjects_id.pages.LoginPage;
 
-public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
+public class VerifytheUserCanLogout {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -35,11 +34,20 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
-		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
+
+		LoginPage login =home.goToLogin(driver);
+		login.userName.sendKeys("admin");
+		login.password.sendKeys("123");
+		login.login.click();
 		
-		buyProductPage.quantity.sendKeys("10");	
-		assertEquals(buyProductPage.quantity.getAttribute("value"), "10", "Quantity is not equal to 10");		
+		assertEquals(home.loggedInUserName.getText(), "Hi John, Welcome back !", "Logeed in user message was not - Hi John, Welcome back !");
+		
+		home.logout.click();
+		
+		boolean isLoginDisplayed=home.login.isDisplayed();
+		assertEquals(isLoginDisplayed, true,"Login link is not visible");
+
+		
 	}
 
 	@AfterTest
@@ -47,4 +55,3 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		driver.quit();
 	}
 }
-

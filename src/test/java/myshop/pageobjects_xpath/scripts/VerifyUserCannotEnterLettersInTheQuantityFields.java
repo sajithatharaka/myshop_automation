@@ -16,6 +16,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
 import myshop.pageobjects_xpath.pages.BuyProductPage;
 import myshop.pageobjects_xpath.pages.HomePage;
+import myshop.pageobjects_xpath.pages.ProductDetailsPage;
 
 public class VerifyUserCannotEnterLettersInTheQuantityFields {
 	private WebDriver driver;
@@ -34,10 +35,11 @@ public class VerifyUserCannotEnterLettersInTheQuantityFields {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.seeDetailsFirstItem.click();
-		BuyProductPage productDetailsPage=home.goToBuyProductPagePage(driver);
-		productDetailsPage.quantity.sendKeys("abc");	
-		assertEquals(productDetailsPage.quantity.getAttribute("value"), "", "Quantity is not empty");			
+		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
+		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
+		
+		buyProductPage.quantity.sendKeys("abc");	
+		assertEquals(buyProductPage.quantity.getAttribute("value"), "", "Quantity is not empty");			
 	}
 
 	@AfterTest

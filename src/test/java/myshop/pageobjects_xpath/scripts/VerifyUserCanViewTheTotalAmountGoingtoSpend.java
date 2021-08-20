@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
+import myshop.pageobjects_xpath.pages.ProductDetailsPage;
 import myshop.pageobjects_xpath.pages.BuyProductPage;
 import myshop.pageobjects_xpath.pages.HomePage;
 
@@ -34,11 +35,13 @@ public class VerifyUserCanViewTheTotalAmountGoingtoSpend {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.seeDetailsFirstItem.click();
-		BuyProductPage productDetailsPage=home.goToBuyProductPagePage(driver);
-		productDetailsPage.quantity.sendKeys("10");	
-		productDetailsPage.buy.click();
-		assertEquals(productDetailsPage.total_product.getText(), "Rs. 28500", "Quantity is not equal to Rs. 28500");		
+		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
+		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
+
+
+		buyProductPage.quantity.sendKeys("10");	
+		buyProductPage.buy.click();
+		assertEquals(buyProductPage.total_product.getText(), "Rs. 28500", "Quantity is not equal to Rs. 28500");		
 	}
 
 	@AfterTest

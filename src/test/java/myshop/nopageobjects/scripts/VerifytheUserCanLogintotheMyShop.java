@@ -36,12 +36,12 @@ public class VerifytheUserCanLogintotheMyShop {
 		driver.findElement(By.xpath("//label[text()='Password']/following-sibling::input")).sendKeys("123");
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
 		
-		String loggedInUser=driver.findElement(By.xpath("//div[text()='Hi John, Welcome back !']")).getText();
+		String loggedInUser=driver.findElement(By.xpath("//span[text()='Hi John, Welcome back !']")).getText();
 		assertEquals(loggedInUser, "Hi John, Welcome back !", "Logeed in user message was not - Hi John, Welcome back !");
 
 		driver.findElement(By.xpath("//a[text()='Logout']")).click();
 		
-		boolean isLoginDisplayed=driver.findElement(By.xpath("//input[@value='Login']")).isDisplayed();
+		boolean isLoginDisplayed=driver.findElement(By.xpath("//a[text()='Login']")).isDisplayed();
 		assertEquals(isLoginDisplayed, true,"Login link is not visible");
 
 	

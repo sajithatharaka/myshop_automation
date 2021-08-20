@@ -1,24 +1,26 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.BuyProductPage;
-import myshop.pageobjects_xpath.pages.HomePage;
-import myshop.pageobjects_xpath.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.HomePage;
+import myshop.pageobjects_id.pages.LoginPage;
 
-public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
+public class VerifytheUserCannotLogintotheMyShopWithWrongUsernameAndWrongPassword {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -35,11 +37,17 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
-		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
+
+		LoginPage login =home.goToLogin(driver);
+		login.userName.sendKeys("admin123");
+		login.password.sendKeys("1234");
+		login.login.click();
 		
-		buyProductPage.quantity.sendKeys("10");	
-		assertEquals(buyProductPage.quantity.getAttribute("value"), "10", "Quantity is not equal to 10");		
+		WebDriverWait wait = new WebDriverWait(driver, 2);
+	    wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+
+		assertEquals(alert.getText(), "Invalid username or password!", "Alert message was not - Invalid username or password!");
 	}
 
 	@AfterTest
@@ -47,4 +55,3 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		driver.quit();
 	}
 }
-

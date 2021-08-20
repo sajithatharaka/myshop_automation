@@ -1,14 +1,14 @@
-package myshop.nopageobjects.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -17,8 +17,12 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
+import myshop.pageobjects_id.pages.BuyProductPage;
+import myshop.pageobjects_id.pages.HomePage;
+import myshop.pageobjects_id.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.ShippingDetailsPage;
 
-public class VerifytheUserCannotSignupWithouPasswords {
+public class VerifyUserCanCheckoutAndEnterShippingDetails {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -34,18 +38,24 @@ public class VerifytheUserCannotSignupWithouPasswords {
 
 	@Test
 	public void verifyLogin() throws InterruptedException {
-		driver.findElement(By.xpath("//a[text()='Sign Up']")).click();
-		
-		driver.findElement(By.xpath("//label[text()='User Name']/following-sibling::input")).sendKeys("Admin");
-		driver.findElement(By.xpath("//label[text()='Password']/following-sibling::input")).sendKeys("");
-		driver.findElement(By.xpath("//label[text()='Re-Enter Password']/following-sibling::input")).sendKeys("");
-		driver.findElement(By.xpath("//input[@value='Register']")).click();		
-		
+		HomePage home = PageFactory.initElements(driver, HomePage.class);
+		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
+		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
+
+		buyProductPage.quantity.sendKeys("10");	
+		buyProductPage.buy.click();
+		ShippingDetailsPage shippingDetails=buyProductPage.goToShippingDetails(driver);
+		shippingDetails.houseNumber.sendKeys("13");
+		shippingDetails.street.sendKeys("Chiltern View");
+		shippingDetails.townCity.sendKeys("Colombo");
+		shippingDetails.country.sendKeys("Sri Lanka");
+		shippingDetails.submit.click();
+
 		WebDriverWait wait = new WebDriverWait(driver, 2);
 	    wait.until(ExpectedConditions.alertIsPresent());
 		Alert alert = driver.switchTo().alert();
+		assertEquals(alert.getText(), "Successfully Saved", "Alert message was not - Successfully Saved");
 
-		assertEquals(alert.getText(), "Please enter a passwords to proceed", "Alert message was not - Please enter a passwords to proceed");
 	}
 
 	@AfterTest

@@ -1,4 +1,4 @@
-package myshop.pageobjects_xpath.scripts;
+package myshop.pageobjects_id.scripts;
 
 import static org.testng.Assert.assertEquals;
 
@@ -14,11 +14,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
-import myshop.pageobjects_xpath.pages.BuyProductPage;
-import myshop.pageobjects_xpath.pages.HomePage;
-import myshop.pageobjects_xpath.pages.ProductDetailsPage;
+import myshop.pageobjects_id.pages.BuyProductPage;
+import myshop.pageobjects_id.pages.HomePage;
+import myshop.pageobjects_id.pages.ProductDetailsPage;
 
-public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
+public class VerifyUserCannotEnterLettersInTheQuantityFields {
 	private WebDriver driver;
 	private Environment environment = Environment.DEFAULT;
 
@@ -37,9 +37,9 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
 		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
-		
-		buyProductPage.quantity.sendKeys("10");	
-		assertEquals(buyProductPage.quantity.getAttribute("value"), "10", "Quantity is not equal to 10");		
+
+		buyProductPage.quantity.sendKeys("abc");	
+		assertEquals(buyProductPage.quantity.getAttribute("value"), "", "Quantity is not empty");			
 	}
 
 	@AfterTest
@@ -47,4 +47,3 @@ public class VerifyUserCanSpecifytheQuantityInTheBuyScreen {
 		driver.quit();
 	}
 }
-

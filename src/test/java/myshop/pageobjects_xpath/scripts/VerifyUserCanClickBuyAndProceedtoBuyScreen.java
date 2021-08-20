@@ -14,7 +14,9 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myshop.constants.Environment;
+import myshop.pageobjects_xpath.pages.BuyProductPage;
 import myshop.pageobjects_xpath.pages.HomePage;
+import myshop.pageobjects_xpath.pages.ProductDetailsPage;
 
 public class VerifyUserCanClickBuyAndProceedtoBuyScreen {
 	private WebDriver driver;
@@ -33,10 +35,11 @@ public class VerifyUserCanClickBuyAndProceedtoBuyScreen {
 	@Test
 	public void verifyLogin() throws InterruptedException {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.seeDetailsFirstItem.click();
-		home.goToBuyProductPagePage(driver);
+		ProductDetailsPage productDetailsPage=home.goToFirstProductDetailsPage(driver);
+		BuyProductPage buyProductPage=productDetailsPage.goToBuy(driver);
 			
-		assertEquals(driver.getTitle(), "Buy Product", "Page title is not Buy Product");		
+		assertEquals(driver.getTitle(), "Buy Product", "Page title is not Buy Product");	
+		
 	}
 
 	@AfterTest
